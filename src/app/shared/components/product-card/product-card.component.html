@@ -1,0 +1,17 @@
+<div
+  class="card pointer"
+  style="width: 18rem"
+  [routerLink]="['products', product.id]"
+>
+  <img
+    class="card-img-top"
+    alt="product picture"
+    [src]="product.imageUrl || '/assets/placeholder.jpg'"
+  />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.description }}</p>
+    <h6>Price: {{ product.price | currency }}</h6>
+  </div>
+</div>
