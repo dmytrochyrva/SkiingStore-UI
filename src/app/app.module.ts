@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Local Imports
 import { environment } from '../environments/environment';
 import { SharedModule } from './shared/shared.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './pages/root/app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
