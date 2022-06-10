@@ -1,7 +1,18 @@
 <nav class="bg-primary text-white container-fluid">
   <div class="d-flex align-items-center justify-content-between h-100">
-    <h5>Skiing Store</h5>
+    <h5 routerLink="/home" class="pointer">Skiing Store</h5>
 
-    <i class="fa fa-2x fa-shopping-cart"></i>
+    <div class="d-flex gap-3 align-items-center">
+      <span routerLink="/home" class="pointer">Home</span>
+      <span routerLink="/sandbox" class="pointer">Sandbox</span>
+      <span routerLink="/products" class="pointer">Products</span>
+      <span class="pointer">
+        <i class="fa fa-lg fa-shopping-cart"></i>
+      </span>
+      <span class="pointer d-flex align-items-center gap-2">
+        <span>Dmytro</span>
+        <img id="avatar" src="/assets/avatar.jpg" alt="avatar" />
+      </span>
+    </div>
   </div>
 </nav>

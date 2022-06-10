@@ -14,7 +14,24 @@ body {
   height: 100vh;
 }
 
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: var(--bs-secondary);
+}
+
 /* Utils Styles */
 .pointer {
   cursor: pointer;
+}
+
+.overflowY-scroll {
+  overflow-y: scroll;
 }
