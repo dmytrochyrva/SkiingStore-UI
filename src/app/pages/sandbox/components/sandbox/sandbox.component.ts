@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 
 // Project Imports
-import { productMock } from 'src/app/core/mocks';
+import { productMock, dropdownOptionsMock } from 'src/app/core/mocks';
 
 @Component({
   selector: 'app-sandbox',
@@ -11,4 +11,5 @@ import { productMock } from 'src/app/core/mocks';
 })
 export class SandboxComponent {
   public productMock = productMock;
+  public dropdownOptionsMock = dropdownOptionsMock;
 }

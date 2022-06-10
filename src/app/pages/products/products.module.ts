@@ -11,6 +11,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductsService } from './services/products.service';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
+import { FiltersComponent } from './components/products/partials/filters/filters.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ProductsComponent, ProductComponent],
+  declarations: [ProductsComponent, ProductComponent, FiltersComponent],
   imports: [
     CommonModule,
     SharedModule,

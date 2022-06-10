@@ -32,6 +32,10 @@ body {
   cursor: pointer;
 }
 
+.select-none {
+  user-select: none;
+}
+
 .overflowY-scroll {
   overflow-y: scroll;
 }
