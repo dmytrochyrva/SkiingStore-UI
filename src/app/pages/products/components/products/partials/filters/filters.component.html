@@ -9,5 +9,7 @@
   </div>
 
   <span>Category</span>
-  <app-dropdown [options]="categories"></app-dropdown>
+  <ng-container *ngIf="categories$ | async as categories">
+    <app-dropdown [options]="categories"></app-dropdown>
+  </ng-container>
 </div>

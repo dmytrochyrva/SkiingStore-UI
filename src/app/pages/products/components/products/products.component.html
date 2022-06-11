@@ -5,7 +5,7 @@
     </div>
 
     <div class="row col-9">
-      <div class="col-4 px-3" *ngFor="let product of products | async">
+      <div class="col-4 px-3" *ngFor="let product of products$ | async">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </div>

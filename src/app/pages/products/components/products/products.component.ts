@@ -1,8 +1,9 @@
 // Libraries Imports
+import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 
 // Local Imports
-import { ProductsService } from '../../services/products.service';
+import { selectProducts, loadProducts } from '../../+store';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,9 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
-  public products = this.productsService.getProducts();
+  public products$ = this.store.select(selectProducts);
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private store: Store) {
+    this.store.dispatch(loadProducts());
+  }
 }

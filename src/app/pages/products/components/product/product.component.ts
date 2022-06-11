@@ -1,12 +1,10 @@
 // Libraries Imports
+import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-// Project Imports
-import { IProduct } from 'src/app/core/models';
-
 // Local Imports
-import { ProductsService } from '../../services/products.service';
+import { selectProduct, loadProduct } from '../../+store';
 
 @Component({
   selector: 'app-product',
@@ -14,12 +12,10 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent {
-  public product$ = this.productsService.getProduct(
-    this.route.snapshot.paramMap.get('id')!
-  );
+  public product$ = this.store.select(selectProduct);
 
-  constructor(
-    private route: ActivatedRoute,
-    private productsService: ProductsService
-  ) {}
+  constructor(private store: Store, private route: ActivatedRoute) {
+    const id = this.route.snapshot.paramMap.get('id')!;
+    this.store.dispatch(loadProduct({ id }));
+  }
 }

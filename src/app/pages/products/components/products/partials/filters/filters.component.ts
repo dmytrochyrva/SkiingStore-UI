@@ -1,23 +1,20 @@
 // Libraries Imports
-import { Component, OnInit } from '@angular/core';
-
-// Project Imports
-import { IDropdownOption } from 'src/app/core/models';
+import { map } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Component } from '@angular/core';
 
 // Local Imports
-import { ProductsService } from '../../../../services/products.service';
+import { selectCategories, loadCategories } from '../../../../+store';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-export class FiltersComponent implements OnInit {
-  public categories!: IDropdownOption[];
-
-  constructor(private productsService: ProductsService) {
-    this.productsService.getCategories().subscribe((categories) => {
-      this.categories = categories?.map((category, index) => {
+export class FiltersComponent {
+  public categories$ = this.store.select(selectCategories).pipe(
+    map((categories) =>
+      categories?.map((category, index) => {
         const categoryOption = {
           name: category.name,
           value: category.id,
@@ -26,9 +23,11 @@ export class FiltersComponent implements OnInit {
         return index === 0
           ? { ...categoryOption, default: true }
           : categoryOption;
-      });
-    });
-  }
+      })
+    )
+  );
 
-  public ngOnInit(): void {}
+  constructor(private store: Store) {
+    this.store.dispatch(loadCategories());
+  }
 }
