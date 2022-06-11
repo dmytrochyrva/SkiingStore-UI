@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // Project Imports
-import { IProduct } from 'src/app/core/models';
 import { environment } from 'src/environments/environment';
+import { IProduct, ICategory } from 'src/app/core/models';
 
 @Injectable()
 export class ProductsService {
@@ -19,5 +19,9 @@ export class ProductsService {
 
   public getProduct(id: string): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.endpoint}/${id}`);
+  }
+
+  public getCategories(): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(`${this.endpoint}/categories`);
   }
 }
