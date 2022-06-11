@@ -22,6 +22,14 @@ export class ProductsService {
     return this.http.get<IProduct>(`${this.endpoint}/${id}`);
   }
 
+  public addProduct(product: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>(`${this.endpoint}`, product);
+  }
+
+  public patchProduct(product: IProduct): Observable<IProduct> {
+    return this.http.patch<IProduct>(`${this.endpoint}`, product);
+  }
+
   public getProducts(params?: IProductFilters): Observable<IProductResponse> {
     return this.http.get<IProductResponse>(this.endpoint, {
       params: { ...params },

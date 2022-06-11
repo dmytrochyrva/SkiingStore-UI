@@ -11,6 +11,12 @@ import {
   loadProduct,
   loadProductSuccess,
   loadProductFailed,
+  addProduct,
+  addProductSuccess,
+  addProductFailed,
+  patchProduct,
+  patchProductSuccess,
+  patchProductFailed,
   loadCategories,
   loadCategoriesSuccess,
   loadCategoriesFailed,
@@ -31,6 +37,30 @@ export class ProductsEffects {
         this.productsService.getProduct(id).pipe(
           map((product) => loadProductSuccess({ product })),
           catchError((error) => of(loadProductFailed({ error })))
+        )
+      )
+    )
+  );
+
+  public addProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addProduct),
+      mergeMap(({ product }) =>
+        this.productsService.addProduct(product).pipe(
+          map((product) => addProductSuccess({ product })),
+          catchError((error) => of(addProductFailed({ error })))
+        )
+      )
+    )
+  );
+
+  public patchProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(patchProduct),
+      mergeMap(({ product }) =>
+        this.productsService.patchProduct(product).pipe(
+          map((product) => patchProductSuccess({ product })),
+          catchError((error) => of(patchProductFailed({ error })))
         )
       )
     )

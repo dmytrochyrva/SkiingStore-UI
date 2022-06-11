@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Local Imports
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -25,6 +26,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     BsDropdownModule,
     HttpClientModule,
     PaginationModule,
+    ReactiveFormsModule,
   ],
   exports: [
     NavbarComponent,
@@ -33,6 +35,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     DropdownComponent,
     HttpClientModule,
     PaginationModule,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule {}

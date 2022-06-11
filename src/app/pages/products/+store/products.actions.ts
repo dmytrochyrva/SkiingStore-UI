@@ -36,6 +36,32 @@ export const loadProductFailed = createAction(
   props<{ error: HttpErrorResponse }>()
 );
 
+export const addProduct = createAction(
+  '[Products] Add Product',
+  props<{ product: IProduct }>()
+);
+export const addProductSuccess = createAction(
+  '[Products] Add Product Success',
+  props<{ product: IProduct }>()
+);
+export const addProductFailed = createAction(
+  '[Products] Add Product Failed',
+  props<{ error: HttpErrorResponse }>()
+);
+
+export const patchProduct = createAction(
+  '[Products] Update Product',
+  props<{ product: IProduct }>()
+);
+export const patchProductSuccess = createAction(
+  '[Products] Update Product Success',
+  props<{ product: IProduct }>()
+);
+export const patchProductFailed = createAction(
+  '[Products] Update Product Failed',
+  props<{ error: HttpErrorResponse }>()
+);
+
 export const loadCategories = createAction('[Products] Load Categories');
 export const loadCategoriesSuccess = createAction(
   '[Products] Load Categories Success',

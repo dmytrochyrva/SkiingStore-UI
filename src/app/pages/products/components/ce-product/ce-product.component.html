@@ -1,0 +1,38 @@
+<div class="container py-5">
+  <form [formGroup]="productForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name:</label>
+      <input
+        formControlName="name"
+        id="name"
+        type="text"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price:</label>
+      <input
+        formControlName="price"
+        id="price"
+        type="number"
+        class="form-control"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+
+      <textarea
+        formControlName="description"
+        id="description"
+        class="form-control"
+        rows="5"
+      ></textarea>
+    </div>
+
+    <button class="btn btn-primary" (click)="submitForm()">
+      {{ id ? "Edit Product" : "Add Product" }}
+    </button>
+  </form>
+</div>

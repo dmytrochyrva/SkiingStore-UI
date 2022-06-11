@@ -1,5 +1,5 @@
-<div class="container py-5">
-  <div class="row">
+<div class="container pt-5 pb-3 h-100">
+  <div class="row h-100">
     <div class="col-3">
       <app-filters
         [params]="params"
@@ -7,26 +7,26 @@
       ></app-filters>
     </div>
 
-    <div *ngIf="products$ | async as products" class="row col-9">
-      <h2 *ngIf="!products.length" class="text-center">
-        No products were found.
-      </h2>
+    <div class="col-9 d-flex flex-column justify-content-between">
+      <div *ngIf="products$ | async as products" class="row">
+        <h2 *ngIf="!products.length" class="text-center">
+          No products were found.
+        </h2>
 
-      <div class="col-4 px-3 pb-3" *ngFor="let product of products">
-        <app-product-card [product]="product"></app-product-card>
+        <div class="col-4 px-3 pb-3" *ngFor="let product of products">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
       </div>
 
-      <div class="col-12 px-3">
-        <ng-container *ngIf="totalItems$ | async as totalItems">
-          <pagination
-            *ngIf="totalItems > pageSize"
-            [totalItems]="totalItems"
-            [itemsPerPage]="pageSize"
-            [(ngModel)]="currentPage"
-            (pageChanged)="updateRoute({ pageNumber: $event.page })"
-          ></pagination>
-        </ng-container>
-      </div>
+      <ng-container *ngIf="totalItems$ | async as totalItems">
+        <pagination
+          *ngIf="totalItems > pageSize"
+          [totalItems]="totalItems"
+          [itemsPerPage]="pageSize"
+          [(ngModel)]="currentPage"
+          (pageChanged)="updateRoute({ pageNumber: $event.page })"
+        ></pagination>
+      </ng-container>
     </div>
   </div>
 </div>

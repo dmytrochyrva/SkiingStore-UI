@@ -4,7 +4,6 @@ import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
-import { Routes, RouterModule } from '@angular/router';
 
 // Projects Imports
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -16,23 +15,20 @@ import {
   PRODUCTS_REDUCER_KEY,
 } from './+store';
 import { ProductsService } from './services/products.service';
-import { ProductComponent } from './components/product/product.component';
 import { FiltersComponent } from './components/products/partials/filters/filters.component';
+import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
-
-const routes: Routes = [
-  { path: '', component: ProductsComponent },
-  { path: ':id', component: ProductComponent },
-];
+import { ProductsRoutingModule } from './products-routing.module';
+import { CeProductComponent } from './components/ce-product/ce-product.component';
 
 @NgModule({
-  declarations: [ProductsComponent, ProductComponent, FiltersComponent],
+  declarations: [ProductsComponent, ProductComponent, FiltersComponent, CeProductComponent],
   imports: [
     FormsModule,
     CommonModule,
     SharedModule,
+    ProductsRoutingModule,
     StoreModule.forFeature(PRODUCTS_REDUCER_KEY, productsReducer),
-    RouterModule.forChild(routes),
     EffectsModule.forFeature([ProductsEffects]),
   ],
   providers: [ProductsService],
