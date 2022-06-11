@@ -5,7 +5,12 @@ import { Observable } from 'rxjs';
 
 // Project Imports
 import { environment } from 'src/environments/environment';
-import { IProduct, ICategory, IProductFilters } from 'src/app/core/models';
+import {
+  IProduct,
+  ICategory,
+  IProductResponse,
+  IProductFilters,
+} from 'src/app/core/models';
 
 @Injectable()
 export class ProductsService {
@@ -17,8 +22,10 @@ export class ProductsService {
     return this.http.get<IProduct>(`${this.endpoint}/${id}`);
   }
 
-  public getProducts(params?: IProductFilters): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.endpoint, { params: { ...params } });
+  public getProducts(params?: IProductFilters): Observable<IProductResponse> {
+    return this.http.get<IProductResponse>(this.endpoint, {
+      params: { ...params },
+    });
   }
 
   public getCategories(): Observable<ICategory[]> {

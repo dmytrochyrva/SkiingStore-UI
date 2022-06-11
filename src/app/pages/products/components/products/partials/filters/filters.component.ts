@@ -1,18 +1,13 @@
 // Libraries Imports
 import { map } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 // Project Imports
-import { IDropdownOption } from 'src/app/core/models';
+import { IDropdownOption, IProductFilters } from 'src/app/core/models';
 
 // Local Imports
-import {
-  selectCategories,
-  loadCategories,
-  loadProducts,
-} from '../../../../+store';
+import { selectCategories, loadCategories } from '../../../../+store';
 
 @Component({
   selector: 'app-filters',
@@ -20,6 +15,12 @@ import {
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent {
+  @Input() params?: IProductFilters;
+
+  @Output() filtersUpdated = new EventEmitter<{
+    [key: string]: string | number | null;
+  }>();
+
   public categories$ = this.store.select(selectCategories).pipe(
     map((categories) => {
       const options = categories?.map((category) => {
@@ -36,30 +37,15 @@ export class FiltersComponent {
     })
   );
 
-  constructor(
-    private store: Store,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+  constructor(private store: Store) {
     this.store.dispatch(loadCategories());
-
-    this.route.queryParams.subscribe((params) => {
-      this.store.dispatch(loadProducts(params));
-    });
   }
 
   public categoryUpdate(option: IDropdownOption) {
-    this.updateRoute({ category: option.value || null });
+    this.filtersUpdated.emit({ category: option.value || null });
   }
 
   public priceRangeUpdate(event: any) {
-    this.updateRoute({ [event.target.id]: event.target.value || null });
-  }
-
-  private updateRoute(queryParams: object) {
-    this.router.navigate([], {
-      queryParams,
-      queryParamsHandling: 'merge',
-    });
+    this.filtersUpdated.emit({ [event.target.id]: event.target.value || null });
   }
 }

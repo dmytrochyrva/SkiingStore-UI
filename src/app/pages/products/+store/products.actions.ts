@@ -3,15 +3,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 
 // Project Imports
-import { IProduct, ICategory, IProductFilters } from 'src/app/core/models';
+import {
+  IProduct,
+  ICategory,
+  IProductFilters,
+  IProductResponse,
+} from 'src/app/core/models';
 
 export const loadProducts = createAction(
   '[Products] Load Products',
-  props<IProductFilters>()
+  props<{ filters: IProductFilters }>()
 );
 export const loadProductsSuccess = createAction(
   '[Products] Load Products Success',
-  props<{ products: IProduct[] }>()
+  props<{ response: IProductResponse }>()
 );
 export const loadProductsFailed = createAction(
   '[Products] Load Products Failed',

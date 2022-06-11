@@ -1,12 +1,31 @@
 <div class="container py-5">
   <div class="row">
     <div class="col-3">
-      <app-filters></app-filters>
+      <app-filters
+        [params]="params"
+        (filtersUpdated)="updateRoute($event)"
+      ></app-filters>
     </div>
 
-    <div class="row col-9">
-      <div class="col-4 px-3" *ngFor="let product of products$ | async">
+    <div *ngIf="products$ | async as products" class="row col-9">
+      <h2 *ngIf="!products.length" class="text-center">
+        No products were found.
+      </h2>
+
+      <div class="col-4 px-3 pb-3" *ngFor="let product of products">
         <app-product-card [product]="product"></app-product-card>
+      </div>
+
+      <div class="col-12 px-3">
+        <ng-container *ngIf="totalItems$ | async as totalItems">
+          <pagination
+            *ngIf="totalItems > pageSize"
+            [totalItems]="totalItems"
+            [itemsPerPage]="pageSize"
+            [(ngModel)]="currentPage"
+            (pageChanged)="updateRoute({ pageNumber: $event.page })"
+          ></pagination>
+        </ng-container>
       </div>
     </div>
   </div>

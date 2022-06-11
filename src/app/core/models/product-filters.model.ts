@@ -1,5 +1,7 @@
 export interface IProductFilters {
-  priceFrom?: number;
-  priceTo?: number;
+  priceFrom?: string;
+  priceTo?: string;
   category?: string;
+  pageNumber?: string;
+  pageSize?: string;
 }

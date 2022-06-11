@@ -14,7 +14,17 @@ export const selectProduct = createSelector(
 
 export const selectProducts = createSelector(
   selectProductsState,
-  (state) => state.products
+  (state) => state.productsData?.products
+);
+
+export const selectPageNumber = createSelector(
+  selectProductsState,
+  (state) => state.productsData?.pageNumber
+);
+
+export const selectTotalItems = createSelector(
+  selectProductsState,
+  (state) => state.productsData?.totalItems
 );
 
 export const selectCategories = createSelector(

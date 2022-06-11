@@ -2,7 +2,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 // Local Imports
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -17,12 +19,20 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     ProductCardComponent,
     DropdownComponent,
   ],
-  imports: [CommonModule, RouterModule, BsDropdownModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    BsDropdownModule,
+    HttpClientModule,
+    PaginationModule,
+  ],
   exports: [
     NavbarComponent,
     NotFoundComponent,
     ProductCardComponent,
     DropdownComponent,
+    HttpClientModule,
+    PaginationModule,
   ],
 })
 export class SharedModule {}

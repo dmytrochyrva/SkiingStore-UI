@@ -4,7 +4,6 @@ import { StoreModule } from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 
 // Projects Imports
@@ -32,7 +31,6 @@ const routes: Routes = [
     FormsModule,
     CommonModule,
     SharedModule,
-    HttpClientModule,
     StoreModule.forFeature(PRODUCTS_REDUCER_KEY, productsReducer),
     RouterModule.forChild(routes),
     EffectsModule.forFeature([ProductsEffects]),

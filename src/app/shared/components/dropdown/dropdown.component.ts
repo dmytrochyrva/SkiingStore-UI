@@ -13,12 +13,25 @@ export class DropdownComponent implements OnInit {
   @Input() options!: IDropdownOption[];
   @Output() onSelect = new EventEmitter();
 
-  public selected!: IDropdownOption;
+  @Input()
+  set selected(value: IDropdownOption | string | undefined) {
+    if (typeof value === 'string') {
+      this._selected = this.options?.find((option) => option.name === value)!;
+    } else if (value) {
+      this._selected = value;
+    }
+  }
+
+  get selected(): IDropdownOption {
+    return this._selected;
+  }
+
+  private _selected!: IDropdownOption;
 
   public ngOnInit(): void {
     const defaultOption = this.options?.find((option) => option.default);
 
-    if (defaultOption) {
+    if (!this.selected && defaultOption) {
       this.selected = defaultOption;
     }
   }

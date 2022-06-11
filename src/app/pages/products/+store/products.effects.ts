@@ -3,9 +3,6 @@ import { Injectable } from '@angular/core';
 import { of, map, mergeMap, catchError } from 'rxjs';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 
-// Project Imports
-import { IProductFilters } from 'src/app/core/models';
-
 // Local Imports
 import {
   loadProducts,
@@ -42,9 +39,9 @@ export class ProductsEffects {
   public getProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadProducts),
-      mergeMap((params: IProductFilters) =>
-        this.productsService.getProducts(params).pipe(
-          map((products) => loadProductsSuccess({ products })),
+      mergeMap(({ filters }) =>
+        this.productsService.getProducts(filters).pipe(
+          map((response) => loadProductsSuccess({ response })),
           catchError((error) => of(loadProductsFailed({ error })))
         )
       )

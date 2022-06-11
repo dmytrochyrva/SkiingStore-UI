@@ -9,6 +9,7 @@
       type="number"
       class="form-control"
       placeholder="From"
+      [value]="params?.priceFrom || ''"
       (change)="priceRangeUpdate($event)"
     />
     <input
@@ -16,6 +17,7 @@
       type="number"
       class="form-control"
       placeholder="To"
+      [value]="params?.priceTo || ''"
       (change)="priceRangeUpdate($event)"
     />
   </div>
@@ -24,6 +26,7 @@
   <ng-container *ngIf="categories$ | async as categories">
     <app-dropdown
       [options]="categories"
+      [selected]="params?.category"
       (onSelect)="categoryUpdate($event)"
     ></app-dropdown>
   </ng-container>
