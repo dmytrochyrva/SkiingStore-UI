@@ -4,12 +4,27 @@
 <div class="d-flex flex-column gap-3">
   <span>Price</span>
   <div class="d-flex gap-2">
-    <input type="number" class="form-control" placeholder="From" />
-    <input type="number" class="form-control" placeholder="To" />
+    <input
+      id="priceFrom"
+      type="number"
+      class="form-control"
+      placeholder="From"
+      (change)="priceRangeUpdate($event)"
+    />
+    <input
+      id="priceTo"
+      type="number"
+      class="form-control"
+      placeholder="To"
+      (change)="priceRangeUpdate($event)"
+    />
   </div>
 
   <span>Category</span>
   <ng-container *ngIf="categories$ | async as categories">
-    <app-dropdown [options]="categories"></app-dropdown>
+    <app-dropdown
+      [options]="categories"
+      (onSelect)="categoryUpdate($event)"
+    ></app-dropdown>
   </ng-container>
 </div>

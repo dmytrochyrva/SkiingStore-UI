@@ -14,6 +14,6 @@ export class ProductsComponent {
   public products$ = this.store.select(selectProducts);
 
   constructor(private store: Store) {
-    this.store.dispatch(loadProducts());
+    this.store.dispatch(loadProducts({}));
   }
 }

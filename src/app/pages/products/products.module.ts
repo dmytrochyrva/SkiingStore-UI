@@ -1,6 +1,7 @@
 // Libraries Imports
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +29,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [ProductsComponent, ProductComponent, FiltersComponent],
   imports: [
+    FormsModule,
     CommonModule,
     SharedModule,
     HttpClientModule,
